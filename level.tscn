@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://chgdcxcn3bq1k"]
+
+[ext_resource type="PackedScene" uid="uid://cpoyttntii3" path="res://ball.tscn" id="1_14kbc"]
+[ext_resource type="PackedScene" uid="uid://818foa45m2gy" path="res://bat.tscn" id="2_qefgj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0kx44"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_n0kxl"]
+sky_material = SubResource("ProceduralSkyMaterial_0kx44")
+
+[sub_resource type="Environment" id="Environment_xhlhf"]
+background_mode = 2
+sky = SubResource("Sky_n0kxl")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t03l0"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dlp7d"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xhlhf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_t03l0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dlp7d")
+
+[node name="ball" parent="." instance=ExtResource("1_14kbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
+linear_damp = 3.0
+
+[node name="Bat" parent="." instance=ExtResource("2_qefgj")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.921241, 1.93129, -1.63949)
+
+[node name="wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.819229, 2.57358, -1.01829)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dlp7d")
+
+[connection signal="body_entered" from="Bat" to="ball" method="_on_bat_body_entered"]
+[connection signal="body_exited" from="Bat" to="ball" method="_on_bat_body_exited"]
