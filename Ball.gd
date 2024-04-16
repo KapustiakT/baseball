@@ -1,6 +1,9 @@
 extends RigidBody3D
 
-var zone = 'out'
+var bat_zone = 'out'
+var bat_outside = 0
+var bat_perfect = 0
+var bat_inside = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,15 +12,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var input = Vector3.ZERO
-	input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	input.z = Input.get_action_strength("move_back") -  Input.get_action_strength("move_foward")
 	
-	apply_central_force(input * 1200.0 * delta)
-	
-	if Input.is_action_just_pressed("left_click") and zone == 'in':
-		axis_lock_linear_y = false
-		apply_impulse(Vector3(0, 20, -100))
+	if Input.is_action_just_pressed("left_click"):
+		if bat_outside == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(100, 20, -200))
+		
+		elif bat_perfect == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(0, 20, -200))
+		
+		elif bat_inside == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(-100, 20, -200))
 		
 	_reset()
 
@@ -29,14 +36,51 @@ func _reset():
 		apply_impulse(Vector3(0, 0, 30))
 
 
-func _on_bat_body_entered(body):
-	print('enter')
-	zone = 'in'
-	print(zone) 
-
 
 func _on_bat_body_exited(body):
 	print('exited')
-	zone = 'out'
-	print(zone)
+	bat_zone = 'out'
+	print(bat_zone)
 	
+
+
+func _on_outside_body_entered(body):
+	print('outside')
+	bat_outside = 1
+	print(bat_outside) 
+
+
+func _on_perfect_body_entered(body):
+	print('perfect')
+	bat_perfect = 1
+	print(bat_perfect) 
+
+
+func _on_inside_body_entered(body):
+	print('inside')
+	bat_inside = 1
+	print(bat_inside) 
+
+
+
+
+
+func _on_bat_body_entered(body):
+	print('in')
+	bat_zone = 'in'
+	print(bat_zone)
+
+
+func _on_outside_body_exited(body):
+	bat_outside = 0
+	print(bat_outside) 
+
+
+func _on_perfect_body_exited(body):
+	bat_perfect = 0
+	print(bat_perfect)
+
+
+func _on_inside_body_exited(body):
+	bat_inside = 0
+	print(bat_inside)
