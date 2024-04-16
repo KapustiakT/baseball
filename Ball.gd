@@ -25,15 +25,23 @@ func _process(_delta):
 		elif bat_inside == 1:
 			axis_lock_linear_y = false
 			apply_impulse(Vector3(-100, 20, -200))
-		
-	_reset()
+	
+	if Input.is_action_just_pressed("right_click"):
+		_reset()
 
 
 func _reset():
-	if Input.is_action_just_pressed("right_click"):
-		axis_lock_linear_y = true
-		position = Vector3(0, 2, -9.5)
-		apply_impulse(Vector3(0, 0, 30))
+	sleeping = true
+	position = Vector3(0, 2, -9.5)
+	linear_velocity = Vector3(0,0,0)
+	axis_lock_linear_y = true
+	sleeping = false
+	
+	$PitchClock.start()
+
+
+func throw_pitch():
+	apply_impulse(Vector3(0, 0, 30))
 
 
 
@@ -84,3 +92,7 @@ func _on_perfect_body_exited(_body):
 func _on_inside_body_exited(_body):
 	bat_inside = 0
 	print(bat_inside)
+
+
+func _on_pitch_clock_timeout():
+	pass # Replace with function body.
