@@ -4,6 +4,9 @@ var bat_zone = 'out'
 var bat_outside = 0
 var bat_perfect = 0
 var bat_inside = 0
+var swing_early = 0
+var swing_late = 0
+var swing_perfect = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,19 +15,51 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+#for testing is checked perfect is always checked second in full it should be checked last.
+#zones need to be big enough ball could ONLY be in perfect perfect for now zones are to small / ball to big
 	if Input.is_action_just_pressed("left_click"):
 		if bat_outside == 1:
-			axis_lock_linear_y = false
-			apply_impulse(Vector3(100, 20, -200))
+			if swing_early == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(100, 20, -200))
+				print("outside bat and early")
+			elif swing_perfect == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(100, 20, -200))
+				print("outside bat and perfect")
+			elif swing_late == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(100, 20, -200))
+				print("outside bat and late")
+			
 		
 		elif bat_perfect == 1:
-			axis_lock_linear_y = false
-			apply_impulse(Vector3(0, 20, -200))
-		
+			if swing_early == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(0, 20, -200))
+				print("perfect bat and early")
+			elif swing_perfect == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(0, 20, -200))
+				print("perfect and perfect")
+			elif swing_late == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(0, 20, -200))
+				print("perfect bat and late")
+			
 		elif bat_inside == 1:
-			axis_lock_linear_y = false
-			apply_impulse(Vector3(-100, 20, -200))
+			if swing_early == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(-100, 20, -200))
+				print("inside bat and early")
+			elif swing_perfect == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(-100, 20, -200))
+				print("inside and perfect")
+			elif swing_late == 1:
+				axis_lock_linear_y = false
+				apply_impulse(Vector3(-100, 20, -200))
+				print("inside bat and late")
 	
 	if Input.is_action_just_pressed("right_click"):
 		_reset()
@@ -46,53 +81,65 @@ func throw_pitch():
 
 
 func _on_bat_body_exited(_body):
-	print('exited')
 	bat_zone = 'out'
-	print(bat_zone)
 	
 
 
 func _on_outside_body_entered(_body):
-	print('outside')
 	bat_outside = 1
-	print(bat_outside) 
 
 
 func _on_perfect_body_entered(_body):
-	print('perfect')
 	bat_perfect = 1
-	print(bat_perfect) 
 
 
 func _on_inside_body_entered(_body):
-	print('inside')
 	bat_inside = 1
-	print(bat_inside) 
 
 
 
 
 
 func _on_bat_body_entered(_body):
-	print('in')
 	bat_zone = 'in'
-	print(bat_zone)
 
 
 func _on_outside_body_exited(_body):
 	bat_outside = 0
-	print(bat_outside) 
 
 
 func _on_perfect_body_exited(_body):
 	bat_perfect = 0
-	print(bat_perfect)
 
 
 func _on_inside_body_exited(_body):
 	bat_inside = 0
-	print(bat_inside)
 
+
+func _on_early_body_entered(body):
+	swing_early = 1 
+
+
+func _on_early_body_exited(body):
+	swing_early = 0
+
+func _on_late_body_entered(body):
+	swing_late = 1
+
+func _on_late_body_exited(body):
+	swing_late = 0
+
+func _on_perfect_zone_body_entered(body):
+	swing_perfect = 1
+
+
+func _on_perfect_zone_body_exited(body):
+	swing_perfect = 0
 
 func _on_pitch_clock_timeout():
 	pass # Replace with function body.
+
+
+
+
+

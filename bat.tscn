@@ -3,46 +3,46 @@
 [ext_resource type="Script" path="res://bat.gd" id="1_k6qjl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nfw24"]
-size = Vector3(1.63141, 1, 1)
+size = Vector3(0.969917, 1, 3.61572)
 
 [sub_resource type="BoxMesh" id="BoxMesh_33edl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_604ma"]
-size = Vector3(0.526489, 1, 1)
+size = Vector3(0.557755, 1, 3.61914)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3s8vi"]
-size = Vector3(0.523438, 1, 1)
+size = Vector3(0.636169, 1, 3.61035)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baecw"]
-size = Vector3(0.530151, 1, 1)
+size = Vector3(0.662949, 1, 3.57471)
 
 [node name="bat" type="Area3D"]
 script = ExtResource("1_k6qjl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.235186, -0.03932, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.235186, -0.03932, -0.346191)
 shape = SubResource("BoxShape3D_nfw24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1, -0.229796, -0.03128, 0)
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1, -0.229796, -0.0337826, 0)
 mesh = SubResource("BoxMesh_33edl")
 
 [node name="outside" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="outside"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.701712, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.701712, 0, -0.342285)
 shape = SubResource("BoxShape3D_604ma")
 
 [node name="perfect" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="perfect"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238281, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238281, 0, -0.339355)
 shape = SubResource("BoxShape3D_3s8vi")
 
 [node name="inside" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="inside"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225419, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225419, 0, -0.334473)
 shape = SubResource("BoxShape3D_baecw")

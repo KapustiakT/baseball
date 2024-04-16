@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://chgdcxcn3bq1k"]
+[gd_scene load_steps=9 format=3 uid="uid://chgdcxcn3bq1k"]
 
 [ext_resource type="PackedScene" uid="uid://cpoyttntii3" path="res://ball.tscn" id="1_14kbc"]
+[ext_resource type="PackedScene" uid="uid://hqsoacdymocr" path="res://hit_zone.tscn" id="2_1k8d4"]
 [ext_resource type="PackedScene" uid="uid://fn7pmw4phebx" path="res://bat.tscn" id="2_qefgj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0kx44"]
@@ -44,6 +45,22 @@ shape = SubResource("ConcavePolygonShape3D_dlp7d")
 [node name="bat" parent="." instance=ExtResource("2_qefgj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46228, -2.67094)
 
+[node name="hit_zone" parent="." instance=ExtResource("2_1k8d4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.0044, 1.48, -3)
+visible = false
+
+[node name="CollisionShape3D" parent="hit_zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.264196, -0.03932, -0.96167)
+
+[node name="CollisionShape3D" parent="hit_zone/early" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.793298, 0, -0.967285)
+
+[node name="CollisionShape3D" parent="hit_zone/perfect_zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427644, 0, -0.96582)
+
+[node name="CollisionShape3D" parent="hit_zone/late" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.952881)
+
 [node name="ball" parent="." instance=ExtResource("1_14kbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
 linear_damp = 3.0
@@ -56,5 +73,12 @@ linear_damp = 3.0
 [connection signal="body_exited" from="bat/perfect" to="ball" method="_on_perfect_body_exited"]
 [connection signal="body_entered" from="bat/inside" to="ball" method="_on_inside_body_entered"]
 [connection signal="body_exited" from="bat/inside" to="ball" method="_on_inside_body_exited"]
+[connection signal="body_entered" from="hit_zone/early" to="ball" method="_on_early_body_entered"]
+[connection signal="body_exited" from="hit_zone/early" to="ball" method="_on_early_body_exited"]
+[connection signal="body_entered" from="hit_zone/perfect_zone" to="ball" method="_on_perfect_zone_body_entered"]
+[connection signal="body_exited" from="hit_zone/perfect_zone" to="ball" method="_on_perfect_zone_body_exited"]
+[connection signal="body_entered" from="hit_zone/late" to="ball" method="_on_late_body_entered"]
+[connection signal="body_exited" from="hit_zone/late" to="ball" method="_on_late_body_exited"]
 
 [editable path="bat"]
+[editable path="hit_zone"]
