@@ -20,11 +20,11 @@ size = Vector3(0.530151, 1, 1)
 script = ExtResource("1_k6qjl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238922, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.235186, -0.03932, 0)
 shape = SubResource("BoxShape3D_nfw24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1, -0.229796, -0.03128, 0)
 mesh = SubResource("BoxMesh_33edl")
 
 [node name="outside" type="Area3D" parent="."]

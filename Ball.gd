@@ -11,7 +11,7 @@ func _ready():
 	axis_lock_linear_y = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if Input.is_action_just_pressed("left_click"):
 		if bat_outside == 1:
@@ -37,26 +37,26 @@ func _reset():
 
 
 
-func _on_bat_body_exited(body):
+func _on_bat_body_exited(_body):
 	print('exited')
 	bat_zone = 'out'
 	print(bat_zone)
 	
 
 
-func _on_outside_body_entered(body):
+func _on_outside_body_entered(_body):
 	print('outside')
 	bat_outside = 1
 	print(bat_outside) 
 
 
-func _on_perfect_body_entered(body):
+func _on_perfect_body_entered(_body):
 	print('perfect')
 	bat_perfect = 1
 	print(bat_perfect) 
 
 
-func _on_inside_body_entered(body):
+func _on_inside_body_entered(_body):
 	print('inside')
 	bat_inside = 1
 	print(bat_inside) 
@@ -65,22 +65,22 @@ func _on_inside_body_entered(body):
 
 
 
-func _on_bat_body_entered(body):
+func _on_bat_body_entered(_body):
 	print('in')
 	bat_zone = 'in'
 	print(bat_zone)
 
 
-func _on_outside_body_exited(body):
+func _on_outside_body_exited(_body):
 	bat_outside = 0
 	print(bat_outside) 
 
 
-func _on_perfect_body_exited(body):
+func _on_perfect_body_exited(_body):
 	bat_perfect = 0
 	print(bat_perfect)
 
 
-func _on_inside_body_exited(body):
+func _on_inside_body_exited(_body):
 	bat_inside = 0
 	print(bat_inside)
