@@ -17,49 +17,48 @@ func _ready():
 func _process(_delta):
 #for testing is checked perfect is always checked second in full it should be checked last.
 #zones need to be big enough ball could ONLY be in perfect perfect for now zones are to small / ball to big
-	if Input.is_action_just_pressed("left_click"):
-		if bat_outside == 1:
-			if swing_early == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(100, 20, -200))
-				print("outside bat and early")
-			elif swing_perfect == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(100, 20, -200))
-				print("outside bat and perfect")
-			elif swing_late == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(100, 20, -200))
-				print("outside bat and late")
-			
+	if bat_outside == 1:
+		if swing_early == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(100, 20, -200))
+			print("outside bat and early")
+		elif swing_perfect == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(100, 20, -200))
+			print("outside bat and perfect")
+		elif swing_late == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(100, 20, -200))
+			print("outside bat and late")
 		
-		elif bat_perfect == 1:
-			if swing_early == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(0, 20, -200))
-				print("perfect bat and early")
-			elif swing_perfect == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(0, 20, -200))
-				print("perfect and perfect")
-			elif swing_late == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(0, 20, -200))
-				print("perfect bat and late")
-			
-		elif bat_inside == 1:
-			if swing_early == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(-100, 20, -200))
-				print("inside bat and early")
-			elif swing_perfect == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(-100, 20, -200))
-				print("inside and perfect")
-			elif swing_late == 1:
-				axis_lock_linear_y = false
-				apply_impulse(Vector3(-100, 20, -200))
-				print("inside bat and late")
+	
+	elif bat_perfect == 1:
+		if swing_early == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(0, 20, -200))
+			print("perfect bat and early")
+		elif swing_perfect == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(0, 20, -200))
+			print("perfect and perfect")
+		elif swing_late == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(0, 20, -200))
+			print("perfect bat and late")
+		
+	elif bat_inside == 1:
+		if swing_early == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(-100, 20, -200))
+			print("inside bat and early")
+		elif swing_perfect == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(-100, 20, -200))
+			print("inside and perfect")
+		elif swing_late == 1:
+			axis_lock_linear_y = false
+			apply_impulse(Vector3(-100, 20, -200))
+			print("inside bat and late")
 	
 	if Input.is_action_just_pressed("right_click"):
 		_reset()

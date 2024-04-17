@@ -25,7 +25,7 @@ data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0
 
 [sub_resource type="Curve3D" id="Curve3D_oms8e"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.93167, 1.49008, -1.34151, -0.615429, 0.157707, 3.14444, 0.615429, -0.157707, -3.14444, 1.95242, 1.22932, -4.20079),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.99034, 1.45615, -1.36387, -0.615429, 0.157707, 3.14444, 0.615429, -0.157707, -3.14444, 0.668283, 1.32753, -4.08952),
 "tilts": PackedFloat32Array(0, 0.701968)
 }
 point_count = 2
@@ -52,22 +52,23 @@ mesh = SubResource("PlaneMesh_t03l0")
 shape = SubResource("ConcavePolygonShape3D_dlp7d")
 
 [node name="hit_zone" parent="." instance=ExtResource("2_1k8d4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.0044, 1.48, -3)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.004, 2, -3)
 
 [node name="CollisionShape3D" parent="hit_zone" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.264196, -0.03932, -0.96167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.264196, -0.03932, -0.983826)
 
 [node name="CollisionShape3D" parent="hit_zone/early" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.793298, 0, -0.967285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.793298, 0, -1.00427)
 
 [node name="CollisionShape3D" parent="hit_zone/perfect_zone" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427644, 0, -0.96582)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427644, 0, -0.980469)
 
 [node name="CollisionShape3D" parent="hit_zone/late" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.952881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.985779)
 
 [node name="ball" parent="." instance=ExtResource("1_14kbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
+visible = false
 linear_damp = 3.0
 
 [node name="Path3D" type="Path3D" parent="."]
@@ -76,12 +77,12 @@ curve = SubResource("Curve3D_oms8e")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 unique_name_in_owner = true
-transform = Transform3D(0.592817, 0.0434748, -0.804118, 0, 0.998499, 0.0539848, 0.805292, -0.032004, 0.591953, -1.93167, 1.49008, -1.34151)
+transform = Transform3D(0.715828, 0.0235714, -0.697827, -9.31289e-10, 0.999387, 0.033758, 0.698225, -0.0241657, 0.71542, -1.99034, 1.45615, -1.36387)
 cubic_interp = false
 loop = false
 
 [node name="bat" parent="Path3D/PathFollow3D" instance=ExtResource("2_qefgj")]
-transform = Transform3D(0.514136, 7.45058e-09, 0.857718, -0.198583, 0.972838, 0.119035, -0.834412, -0.231525, 0.500165, -0.292538, -0.185859, -1.03689)
+transform = Transform3D(0.679442, -0.73373, 3.72529e-09, 0.0945012, 0.0875091, 0.991671, -0.727619, -0.673782, 0.128796, -0.799, -0.216958, -0.44586)
 
 [connection signal="swing" from="." to="Path3D/PathFollow3D/bat" method="start_swing"]
 [connection signal="body_entered" from="hit_zone/early" to="ball" method="_on_early_body_entered"]
