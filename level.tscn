@@ -68,7 +68,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.985779)
 
 [node name="ball" parent="." instance=ExtResource("1_14kbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
-visible = false
 linear_damp = 3.0
 
 [node name="Path3D" type="Path3D" parent="."]
