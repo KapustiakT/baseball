@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://chgdcxcn3bq1k"]
+[gd_scene load_steps=11 format=3 uid="uid://chgdcxcn3bq1k"]
 
+[ext_resource type="Script" path="res://level.gd" id="1_3brqg"]
 [ext_resource type="PackedScene" uid="uid://cpoyttntii3" path="res://ball.tscn" id="1_14kbc"]
 [ext_resource type="PackedScene" uid="uid://hqsoacdymocr" path="res://hit_zone.tscn" id="2_1k8d4"]
 [ext_resource type="PackedScene" uid="uid://fn7pmw4phebx" path="res://bat.tscn" id="2_qefgj"]
@@ -30,6 +31,7 @@ _data = {
 point_count = 2
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_3brqg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xhlhf")
@@ -74,12 +76,14 @@ curve = SubResource("Curve3D_oms8e")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 unique_name_in_owner = true
-transform = Transform3D(0.779978, -0.595614, -0.191837, 0.613765, 0.787905, 0.0491592, 0.121874, -0.15609, 0.980158, 1.95242, 1.22932, -4.20079)
-progress = 5.3125
+transform = Transform3D(0.592817, 0.0434748, -0.804118, 0, 0.998499, 0.0539848, 0.805292, -0.032004, 0.591953, -1.93167, 1.49008, -1.34151)
+cubic_interp = false
+loop = false
 
 [node name="bat" parent="Path3D/PathFollow3D" instance=ExtResource("2_qefgj")]
 transform = Transform3D(0.514136, 7.45058e-09, 0.857718, -0.198583, 0.972838, 0.119035, -0.834412, -0.231525, 0.500165, -0.292538, -0.185859, -1.03689)
 
+[connection signal="swing" from="." to="Path3D/PathFollow3D/bat" method="start_swing"]
 [connection signal="body_entered" from="hit_zone/early" to="ball" method="_on_early_body_entered"]
 [connection signal="body_exited" from="hit_zone/early" to="ball" method="_on_early_body_exited"]
 [connection signal="body_entered" from="hit_zone/perfect_zone" to="ball" method="_on_perfect_zone_body_entered"]
