@@ -1,6 +1,7 @@
 extends Area3D
 
 var speed = 5
+var swing_pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +17,26 @@ func _process(delta):
 	elif Input.is_action_pressed("move_right"):
 # Move right
 		translate(Vector3(speed * delta, 0, 0))
+	
+	print(swing_pressed)
+	swing(delta)
+	swing_check()
+	swing_stop()
+	
 
+func swing_check():
+	if Input.is_action_just_pressed("left_click"):
+		swing_pressed = true
+
+func swing(delta):
+	if swing_pressed == true:
+		const move_speed = 2.0
+		%PathFollow3D.progress += move_speed * delta
+	
+func swing_stop():
+	if %PathFollow3D.progress_ratio >= .9:
+		swing_pressed = false
+		%PathFollow3D.progress = 0
 
 
 #have the bat follow the ball. ray_logic that is worth yoinking as needed
@@ -33,3 +53,6 @@ func _process(delta):
 		#var mouse_postion = ray_array.position
 		#print(mouse_postion)
 		#position = (Vector3(mouse_postion.x,mouse_postion.y,-1.639))
+
+
+

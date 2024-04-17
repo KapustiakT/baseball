@@ -116,24 +116,24 @@ func _on_inside_body_exited(_body):
 	bat_inside = 0
 
 
-func _on_early_body_entered(body):
+func _on_early_body_entered(_body):
 	swing_early = 1 
 
 
-func _on_early_body_exited(body):
+func _on_early_body_exited(_body):
 	swing_early = 0
 
-func _on_late_body_entered(body):
+func _on_late_body_entered(_body):
 	swing_late = 1
 
-func _on_late_body_exited(body):
+func _on_late_body_exited(_body):
 	swing_late = 0
 
-func _on_perfect_zone_body_entered(body):
+func _on_perfect_zone_body_entered(_body):
 	swing_perfect = 1
 
 
-func _on_perfect_zone_body_exited(body):
+func _on_perfect_zone_body_exited(_body):
 	swing_perfect = 0
 
 func _on_pitch_clock_timeout():
