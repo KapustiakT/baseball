@@ -17,47 +17,138 @@ func _ready():
 func _process(_delta):
 #for testing is checked perfect is always checked second in full it should be checked last.
 #zones need to be big enough ball could ONLY be in perfect perfect for now zones are to small / ball to big
+# some of these mins could maybe be set in funtions? like do we want x to always be set be swing timing? idk ugly for now but works i guess
 	if bat_outside == 1:
 		if swing_early == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(100, 20, -200))
+			var min_x = -300
+			var max_x = -100
+			var min_y = 5
+			var max_y = 20
+			var min_z = -150
+			var max_z = -100
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("outside bat and early")
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(100, 20, -200))
+			var min_x = 50
+			var max_x = 200
+			var min_y = 10
+			var max_y = 25
+			var min_z = -200
+			var max_z = -150
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("outside bat and perfect")
 		elif swing_late == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(100, 20, -200))
+			var min_x = 50
+			var max_x = 200
+			var min_y = 10
+			var max_y = 25
+			var min_z = -150
+			var max_z = -100
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("outside bat and late")
 		
 	
 	elif bat_perfect == 1:
 		if swing_early == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(0, 20, -200))
+			var min_x = -250
+			var max_x = -50
+			var min_y = 15
+			var max_y = 25
+			var min_z = -150
+			var max_z = -200
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("perfect bat and early")
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(0, 20, -200))
+			var min_x = 0
+			var max_x = 0
+			var min_y = 30
+			var max_y = 35
+			var min_z = -400
+			var max_z = -450
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("perfect and perfect")
 		elif swing_late == 1:
-			axis_lock_linear_y = false
+			var min_x = 100
+			var max_x = 200
+			var min_y = 5
+			var max_y = 15
+			var min_z = -100
+			var max_z = -200
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			apply_impulse(Vector3(0, 20, -200))
 			print("perfect bat and late")
 		
 	elif bat_inside == 1:
 		if swing_early == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(-100, 20, -200))
+			var min_x = -200
+			var max_x = -100
+			var min_y = 10
+			var max_y = 15
+			var min_z = -20
+			var max_z = -50
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("inside bat and early")
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(-100, 20, -200))
+			var min_x = -200
+			var max_x = -100
+			var min_y = 10
+			var max_y = 15
+			var min_z = -75
+			var max_z = -90
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("inside and perfect")
 		elif swing_late == 1:
 			axis_lock_linear_y = false
-			apply_impulse(Vector3(-100, 20, -200))
+			var min_x = -200
+			var max_x = -100
+			var min_y = 10
+			var max_y = 15
+			var min_z = -50
+			var max_z = -60
+			var impulse = Vector3(
+			randf_range(min_x, max_x),
+			randf_range(min_y, max_y),
+			randf_range(min_z, max_z))
+			apply_impulse(impulse)
 			print("inside bat and late")
 	
 	if Input.is_action_just_pressed("right_click"):

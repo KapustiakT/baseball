@@ -71,10 +71,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427644, 0, -0.980469)
 [node name="CollisionShape3D" parent="hit_zone/late" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.985779)
 
-[node name="ball" parent="." instance=ExtResource("1_14kbc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
-linear_damp = 3.0
-
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0355635, 0.616257, 0.37348)
 curve = SubResource("Curve3D_oms8e")
@@ -89,7 +85,7 @@ loop = false
 transform = Transform3D(0.679442, -0.73373, 3.72529e-09, 0.0945012, 0.0875091, 0.991671, -0.727619, -0.673782, 0.128796, -0.799, -0.216958, -0.44586)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, -200)
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, -177.629)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -98,25 +94,39 @@ mesh = SubResource("PlaneMesh_lhxh1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_fvbbs")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ball" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_14kbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.59373)
+linear_damp = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/ball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 9.59373)
+
 [connection signal="swing" from="." to="Path3D/PathFollow3D/bat" method="start_swing"]
-[connection signal="body_entered" from="hit_zone/early" to="ball" method="_on_early_body_entered"]
-[connection signal="body_exited" from="hit_zone/early" to="ball" method="_on_early_body_exited"]
-[connection signal="body_entered" from="hit_zone/perfect_zone" to="ball" method="_on_perfect_zone_body_entered"]
-[connection signal="body_exited" from="hit_zone/perfect_zone" to="ball" method="_on_perfect_zone_body_exited"]
-[connection signal="body_entered" from="hit_zone/late" to="ball" method="_on_late_body_entered"]
-[connection signal="body_exited" from="hit_zone/late" to="ball" method="_on_late_body_exited"]
-[connection signal="body_entered" from="Path3D/PathFollow3D/bat" to="ball" method="_on_bat_body_entered"]
-[connection signal="body_exited" from="Path3D/PathFollow3D/bat" to="ball" method="_on_bat_body_exited"]
-[connection signal="body_entered" from="Path3D/PathFollow3D/bat/outside" to="ball" method="_on_outside_body_entered"]
-[connection signal="body_exited" from="Path3D/PathFollow3D/bat/outside" to="ball" method="_on_outside_body_exited"]
-[connection signal="body_entered" from="Path3D/PathFollow3D/bat/perfect" to="ball" method="_on_perfect_body_entered"]
-[connection signal="body_exited" from="Path3D/PathFollow3D/bat/perfect" to="ball" method="_on_perfect_body_exited"]
-[connection signal="body_entered" from="Path3D/PathFollow3D/bat/inside" to="ball" method="_on_inside_body_entered"]
-[connection signal="body_exited" from="Path3D/PathFollow3D/bat/inside" to="ball" method="_on_inside_body_exited"]
-[connection signal="body_entered" from="Area3D" to="ball" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="hit_zone/early" to="SubViewportContainer/SubViewport/ball" method="_on_early_body_entered"]
+[connection signal="body_exited" from="hit_zone/early" to="SubViewportContainer/SubViewport/ball" method="_on_early_body_exited"]
+[connection signal="body_entered" from="hit_zone/perfect_zone" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_zone_body_entered"]
+[connection signal="body_exited" from="hit_zone/perfect_zone" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_zone_body_exited"]
+[connection signal="body_entered" from="hit_zone/late" to="SubViewportContainer/SubViewport/ball" method="_on_late_body_entered"]
+[connection signal="body_exited" from="hit_zone/late" to="SubViewportContainer/SubViewport/ball" method="_on_late_body_exited"]
+[connection signal="body_entered" from="Path3D/PathFollow3D/bat" to="SubViewportContainer/SubViewport/ball" method="_on_bat_body_entered"]
+[connection signal="body_exited" from="Path3D/PathFollow3D/bat" to="SubViewportContainer/SubViewport/ball" method="_on_bat_body_exited"]
+[connection signal="body_entered" from="Path3D/PathFollow3D/bat/outside" to="SubViewportContainer/SubViewport/ball" method="_on_outside_body_entered"]
+[connection signal="body_exited" from="Path3D/PathFollow3D/bat/outside" to="SubViewportContainer/SubViewport/ball" method="_on_outside_body_exited"]
+[connection signal="body_entered" from="Path3D/PathFollow3D/bat/perfect" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_body_entered"]
+[connection signal="body_exited" from="Path3D/PathFollow3D/bat/perfect" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_body_exited"]
+[connection signal="body_entered" from="Path3D/PathFollow3D/bat/inside" to="SubViewportContainer/SubViewport/ball" method="_on_inside_body_entered"]
+[connection signal="body_exited" from="Path3D/PathFollow3D/bat/inside" to="SubViewportContainer/SubViewport/ball" method="_on_inside_body_exited"]
+[connection signal="body_entered" from="Area3D" to="SubViewportContainer/SubViewport/ball" method="_on_area_3d_body_entered"]
 
 [editable path="hit_zone"]
 [editable path="Path3D/PathFollow3D/bat"]
