@@ -139,6 +139,6 @@ func _on_pitch_clock_timeout():
 	pass # Replace with function body.
 
 
-
-
-
+func _on_area_3d_body_entered(_body):
+	print("homerun!")
+	_reset()

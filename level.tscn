@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chgdcxcn3bq1k"]
+[gd_scene load_steps=13 format=3 uid="uid://chgdcxcn3bq1k"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_3brqg"]
 [ext_resource type="PackedScene" uid="uid://cpoyttntii3" path="res://ball.tscn" id="1_14kbc"]
@@ -18,7 +18,7 @@ sky = SubResource("Sky_n0kxl")
 tonemap_mode = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t03l0"]
-size = Vector2(10, 10)
+size = Vector2(200, 200)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dlp7d"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
@@ -29,6 +29,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0.701968)
 }
 point_count = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lhxh1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fvbbs"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_3brqg")
@@ -76,12 +81,25 @@ curve = SubResource("Curve3D_oms8e")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 unique_name_in_owner = true
-transform = Transform3D(0.715828, 0.0235714, -0.697827, -9.31289e-10, 0.999387, 0.033758, 0.698225, -0.0241657, 0.71542, -1.99034, 1.45615, -1.36387)
+transform = Transform3D(0.715828, 0.0235726, -0.697827, 9.31289e-10, 0.999387, 0.0337598, 0.698225, -0.0241669, 0.71542, -1.99034, 1.45615, -1.36387)
 cubic_interp = false
 loop = false
 
 [node name="bat" parent="Path3D/PathFollow3D" instance=ExtResource("2_qefgj")]
 transform = Transform3D(0.679442, -0.73373, 3.72529e-09, 0.0945012, 0.0875091, 0.991671, -0.727619, -0.673782, 0.128796, -0.799, -0.216958, -0.44586)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, -200)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_lhxh1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+shape = SubResource("ConvexPolygonShape3D_fvbbs")
 
 [connection signal="swing" from="." to="Path3D/PathFollow3D/bat" method="start_swing"]
 [connection signal="body_entered" from="hit_zone/early" to="ball" method="_on_early_body_entered"]
@@ -98,6 +116,7 @@ transform = Transform3D(0.679442, -0.73373, 3.72529e-09, 0.0945012, 0.0875091, 0
 [connection signal="body_exited" from="Path3D/PathFollow3D/bat/perfect" to="ball" method="_on_perfect_body_exited"]
 [connection signal="body_entered" from="Path3D/PathFollow3D/bat/inside" to="ball" method="_on_inside_body_entered"]
 [connection signal="body_exited" from="Path3D/PathFollow3D/bat/inside" to="ball" method="_on_inside_body_exited"]
+[connection signal="body_entered" from="Area3D" to="ball" method="_on_area_3d_body_entered"]
 
 [editable path="hit_zone"]
 [editable path="Path3D/PathFollow3D/bat"]
