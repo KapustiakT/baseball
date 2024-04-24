@@ -6,13 +6,13 @@
 size = Vector3(0.969917, 1, 1.66077)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_604ma"]
-size = Vector3(0.557755, 1, 1.72974)
+size = Vector3(0.121494, 1, 1.72974)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3s8vi"]
-size = Vector3(0.636169, 1, 1.51465)
+size = Vector3(0.211532, 1, 1.51465)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_baecw"]
-size = Vector3(0.662949, 1, 1.50061)
+size = Vector3(0.131157, 1, 1.50061)
 
 [node name="hit_zone" type="Area3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -20,24 +20,25 @@ script = ExtResource("1_e7hhb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264776, -0.03932, -0.96167)
+visible = false
 shape = SubResource("BoxShape3D_nfw24")
 
 [node name="early" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="early"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.578879, 0, -0.967285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.360749, 0, -0.967285)
 shape = SubResource("BoxShape3D_604ma")
 
 [node name="perfect_zone" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="perfect_zone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.194985, 0, -0.96582)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533211, 0, -0.96582)
 shape = SubResource("BoxShape3D_3s8vi")
 
 [node name="late" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="late"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03833, 0, -0.952881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30423, 0, -0.952881)
 shape = SubResource("BoxShape3D_baecw")

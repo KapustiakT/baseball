@@ -1,5 +1,5 @@
-extends Node3D
-signal swing
+extends AnimationPlayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,6 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
-	#if Input.is_action_just_pressed("swing"):
-		#swing.emit()
+	if Input.is_action_pressed("swing"):
+		play("mixamo_com")
+	if Input.is_action_pressed("right_click"):
+		stop() # Stop the animation if it's playing
+		

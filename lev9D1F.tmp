@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=3 uid="uid://chgdcxcn3bq1k"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_3brqg"]
+[ext_resource type="PackedScene" uid="uid://cpoyttntii3" path="res://ball.tscn" id="1_14kbc"]
+[ext_resource type="PackedScene" uid="uid://hqsoacdymocr" path="res://hit_zone.tscn" id="2_1k8d4"]
+[ext_resource type="PackedScene" uid="uid://bv4xtegxj4hew" path="res://player_swing.tscn" id="2_x267k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0kx44"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_n0kxl"]
+sky_material = SubResource("ProceduralSkyMaterial_0kx44")
+
+[sub_resource type="Environment" id="Environment_xhlhf"]
+background_mode = 2
+sky = SubResource("Sky_n0kxl")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t03l0"]
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dlp7d"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lhxh1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fvbbs"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_3brqg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xhlhf")
+
+[node name="Node3D" parent="WorldEnvironment" instance=ExtResource("2_x267k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.85414)
+
+[node name="Root Scene" parent="WorldEnvironment/Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37943, 0, 0.862436)
+
+[node name="Skeleton3D" parent="WorldEnvironment/Node3D/Root Scene/RootNode" index="0"]
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -0.775759, 0, 1.13189)
+bones/0/position = Vector3(-0.0877521, 0.951092, 0.200534)
+bones/0/rotation = Quaternion(-0.0360058, -0.39715, 0.137378, 0.906699)
+bones/1/rotation = Quaternion(-0.0321482, 0.0120852, 0.0715516, 0.996845)
+bones/2/rotation = Quaternion(0.0369119, -0.00158292, 0.0365659, 0.998648)
+bones/3/rotation = Quaternion(0.0496486, -0.00357097, 0.0365664, 0.998091)
+bones/4/rotation = Quaternion(0.0617572, 0.0129858, 0.0214905, 0.997775)
+bones/5/rotation = Quaternion(-0.0333375, 0.137616, -0.0741248, 0.987145)
+bones/7/rotation = Quaternion(-0.678877, 0.400937, -0.484617, -0.378842)
+bones/8/rotation = Quaternion(0.501603, 0.389001, -0.0790642, 0.768649)
+bones/9/rotation = Quaternion(0.334091, 0.464926, -0.522934, 0.63148)
+bones/10/rotation = Quaternion(-0.089348, 0.0897455, 0.429931, 0.893936)
+bones/11/rotation = Quaternion(0.307398, 0.0334119, -0.267534, 0.912587)
+bones/12/rotation = Quaternion(-0.0605621, 0.02685, 0.234859, 0.969769)
+bones/13/rotation = Quaternion(-0.128668, 0.0950186, 0.513669, 0.842947)
+bones/15/rotation = Quaternion(0.538094, 0.0103654, 0.0608256, 0.840623)
+bones/16/rotation = Quaternion(0.699633, -5.48753e-08, 0.0569982, 0.712225)
+bones/17/rotation = Quaternion(0.399919, 1.81673e-07, 0.032581, 0.915971)
+bones/19/rotation = Quaternion(0.605248, 0.0164085, 0.0592445, 0.793659)
+bones/20/rotation = Quaternion(0.778774, -8.87085e-08, 0.0634455, 0.624088)
+bones/21/rotation = Quaternion(0.395163, 7.17846e-08, 0.0321935, 0.918047)
+bones/23/rotation = Quaternion(0.571679, 0.0110437, 0.0631257, 0.817971)
+bones/24/rotation = Quaternion(0.751649, 9.207e-08, 0.0612358, 0.656714)
+bones/25/rotation = Quaternion(0.467283, -1.14644e-07, 0.0380686, 0.883288)
+bones/27/rotation = Quaternion(0.447215, 0.000161651, 0.0946851, 0.889401)
+bones/28/rotation = Quaternion(0.66813, -1.61235e-07, 0.0544314, 0.742051)
+bones/29/rotation = Quaternion(0.441997, -1.44559e-07, 0.0360087, 0.896293)
+bones/31/rotation = Quaternion(0.530122, 0.523884, -0.344562, 0.570783)
+bones/32/rotation = Quaternion(0.267734, -0.142669, 0.793583, 0.527438)
+bones/33/rotation = Quaternion(0.107661, -0.400286, -0.024711, 0.909708)
+bones/34/rotation = Quaternion(0.104285, 0.0180129, -0.416194, 0.903096)
+bones/35/rotation = Quaternion(0.292243, -0.0369396, 0.252824, 0.92158)
+bones/36/rotation = Quaternion(-0.0171684, -0.0761627, -0.319655, 0.944312)
+bones/37/rotation = Quaternion(-0.169011, -0.0862823, -0.557833, 0.807968)
+bones/39/rotation = Quaternion(0.48727, -0.00955333, -0.0681643, 0.870535)
+bones/40/rotation = Quaternion(0.734753, -8.50638e-07, -0.0752949, 0.674143)
+bones/41/rotation = Quaternion(0.488824, -6.72458e-07, -0.0500931, 0.870943)
+bones/43/rotation = Quaternion(0.487271, -0.00955362, -0.0681649, 0.870534)
+bones/44/rotation = Quaternion(0.736748, -9.67597e-07, -0.0754995, 0.671939)
+bones/45/rotation = Quaternion(0.32965, -4.38464e-07, -0.0337817, 0.943499)
+bones/47/rotation = Quaternion(0.502011, -0.00986186, -0.0695084, 0.862007)
+bones/48/rotation = Quaternion(0.66644, -9.28853e-07, -0.0682947, 0.742424)
+bones/49/rotation = Quaternion(0.488824, -6.49787e-07, -0.0500931, 0.870943)
+bones/51/rotation = Quaternion(0.48727, -0.00955342, -0.0681645, 0.870534)
+bones/52/rotation = Quaternion(0.512699, -1.02747e-06, -0.0525402, 0.856959)
+bones/53/rotation = Quaternion(0.488824, -6.61976e-07, -0.050093, 0.870943)
+bones/55/rotation = Quaternion(-0.062509, 0.180081, 0.936267, 0.295073)
+bones/56/rotation = Quaternion(-0.510536, 0.0412562, -0.111454, 0.851604)
+bones/57/rotation = Quaternion(0.435127, 0.0255662, 0.0595751, 0.898032)
+bones/58/rotation = Quaternion(0.399614, 0.115782, 0.0319818, 0.90878)
+bones/60/rotation = Quaternion(0.0231601, 0.294862, 0.951521, 0.0844205)
+bones/61/rotation = Quaternion(-0.24996, 0.0683082, -0.0865016, 0.961962)
+bones/62/rotation = Quaternion(0.410419, 0.0107735, -0.0228418, 0.911547)
+bones/63/rotation = Quaternion(0.338646, 1.3616e-08, -1.52692e-07, 0.940914)
+
+[node name="BoneAttachment3D" parent="WorldEnvironment/Node3D/Root Scene/RootNode/Skeleton3D" index="2"]
+transform = Transform3D(0.917277, 0.265482, 0.296853, 0.329925, -0.924053, -0.193068, 0.223052, 0.275037, -0.935202, -0.522851, 1.00778, 0.327504)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_t03l0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dlp7d")
+
+[node name="hit_zone" parent="." instance=ExtResource("2_1k8d4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.004, 1.48427, -3)
+
+[node name="CollisionShape3D" parent="hit_zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.264196, -0.03932, -0.983826)
+
+[node name="CollisionShape3D" parent="hit_zone/early" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.793298, 0, -1.00427)
+
+[node name="CollisionShape3D" parent="hit_zone/perfect_zone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427644, 0, -0.980469)
+
+[node name="CollisionShape3D" parent="hit_zone/late" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0135069, 0, -0.985779)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, -177.629)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_lhxh1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_fvbbs")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ball" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_14kbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3.036)
+linear_damp = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/ball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 9.59373)
+
+[connection signal="body_entered" from="hit_zone/early" to="SubViewportContainer/SubViewport/ball" method="_on_early_body_entered"]
+[connection signal="body_exited" from="hit_zone/early" to="SubViewportContainer/SubViewport/ball" method="_on_early_body_exited"]
+[connection signal="body_entered" from="hit_zone/perfect_zone" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_zone_body_entered"]
+[connection signal="body_exited" from="hit_zone/perfect_zone" to="SubViewportContainer/SubViewport/ball" method="_on_perfect_zone_body_exited"]
+[connection signal="body_entered" from="hit_zone/late" to="SubViewportContainer/SubViewport/ball" method="_on_late_body_entered"]
+[connection signal="body_exited" from="hit_zone/late" to="SubViewportContainer/SubViewport/ball" method="_on_late_body_exited"]
+[connection signal="body_entered" from="Area3D" to="SubViewportContainer/SubViewport/ball" method="_on_area_3d_body_entered"]
+
+[editable path="WorldEnvironment/Node3D"]
+[editable path="WorldEnvironment/Node3D/Root Scene"]
+[editable path="hit_zone"]

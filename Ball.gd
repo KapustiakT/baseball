@@ -33,6 +33,8 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("outside bat and early")
+			sleeping = true
+			
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
 			var min_x = 50
@@ -47,6 +49,8 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("outside bat and perfect")
+			sleeping = true
+			
 		elif swing_late == 1:
 			axis_lock_linear_y = false
 			var min_x = 50
@@ -61,7 +65,7 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("outside bat and late")
-		
+			sleeping = true
 	
 	elif bat_perfect == 1:
 		if swing_early == 1:
@@ -78,6 +82,7 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("perfect bat and early")
+			sleeping = true
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
 			var min_x = 0
@@ -92,6 +97,8 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("perfect and perfect")
+			sleeping = true
+			
 		elif swing_late == 1:
 			var min_x = 100
 			var max_x = 200
@@ -106,6 +113,7 @@ func _process(_delta):
 			apply_impulse(impulse)
 			apply_impulse(Vector3(0, 20, -200))
 			print("perfect bat and late")
+			sleeping = true
 		
 	elif bat_inside == 1:
 		if swing_early == 1:
@@ -122,6 +130,7 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("inside bat and early")
+			sleeping = true
 		elif swing_perfect == 1:
 			axis_lock_linear_y = false
 			var min_x = -200
@@ -136,6 +145,7 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("inside and perfect")
+			sleeping = true
 		elif swing_late == 1:
 			axis_lock_linear_y = false
 			var min_x = -200
@@ -150,15 +160,18 @@ func _process(_delta):
 			randf_range(min_z, max_z))
 			apply_impulse(impulse)
 			print("inside bat and late")
-	
+			sleeping = true
 	if Input.is_action_just_pressed("right_click"):
 		_reset()
 
 
+
+
 func _reset():
 	sleeping = true
-	position = Vector3(0, 2, -9.5)
-	linear_velocity = Vector3(0,0,0)
+	position = Vector3(0, 1.3, -15)
+	#position = Vector3(0, 1, -3)
+	#linear_velocity = Vector3(0,0,0)
 	axis_lock_linear_y = true
 	sleeping = false
 	
@@ -166,7 +179,8 @@ func _reset():
 
 
 func throw_pitch():
-	apply_impulse(Vector3(0, 0, 30))
+	#pass
+	apply_impulse(Vector3(0, 0, 25))
 
 
 

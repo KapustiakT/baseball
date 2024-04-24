@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxmsok01i51t3"]
+
+[ext_resource type="PackedScene" uid="uid://b2ikfcngt30dn" path="res://art/Normal Hit.fbx" id="1_or6oj"]
+[ext_resource type="Script" path="res://player_main.gd" id="2_7fv8s"]
+[ext_resource type="PackedScene" uid="uid://fn7pmw4phebx" path="res://bat.tscn" id="2_570x4"]
+[ext_resource type="Script" path="res://normal_hit.gd" id="3_gubiw"]
+
+[node name="Root Scene" instance=ExtResource("1_or6oj")]
+
+[node name="Skeleton3D" parent="RootNode" index="0"]
+bones/1/rotation = Quaternion(-0.0801557, -7.76101e-17, -2.48068e-07, 0.996782)
+bones/7/rotation = Quaternion(-0.484431, 0.570964, -0.526164, -0.403087)
+bones/8/rotation = Quaternion(-0.0246162, 0.00256229, -0.103498, 0.994322)
+bones/11/rotation = Quaternion(0.253284, 0.0616183, -0.22821, 0.938067)
+bones/13/rotation = Quaternion(-0.00166474, -0.000807781, 0.00691975, 0.999974)
+bones/16/rotation = Quaternion(1.74034e-23, -2.64653e-23, 0.000255644, 1)
+bones/31/rotation = Quaternion(0.484423, 0.57097, -0.526162, 0.40309)
+bones/32/rotation = Quaternion(-0.0246064, -0.00256139, 0.103505, 0.994321)
+bones/51/rotation = Quaternion(-4.97554e-06, 1.01781e-08, 0.0020448, 0.999998)
+bones/55/rotation = Quaternion(2.70477e-09, 0.0103565, 0.999946, 2.61153e-07)
+bones/56/rotation = Quaternion(-0.0380914, -8.16315e-10, 2.14149e-08, 0.999274)
+bones/57/rotation = Quaternion(0.45974, 1.02722e-15, -1.24328e-07, 0.888054)
+bones/58/rotation = Quaternion(0.335242, -9.65092e-16, -1.11301e-07, 0.942132)
+bones/60/rotation = Quaternion(2.81915e-09, 0.010368, 0.999946, 2.71895e-07)
+bones/62/rotation = Quaternion(0.459749, -6.3002e-24, -1.16685e-07, 0.888049)
+bones/63/rotation = Quaternion(0.335241, 1.67356e-15, -1.14521e-07, 0.942132)
+script = ExtResource("2_7fv8s")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="RootNode/Skeleton3D" index="2"]
+transform = Transform3D(9.11044e-07, 1, -1.67266e-06, 3.8086e-07, -1.78069e-06, -1, -1, 8.55471e-07, -4.25095e-07, 0.713332, 1.44061, -0.0554844)
+bone_name = "mixamorig_LeftHand"
+bone_idx = 34
+
+[node name="bat" parent="RootNode/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("2_570x4")]
+transform = Transform3D(-0.247884, 0.0312369, -0.00881643, -0.0250671, -0.141106, 0.204843, 0.0206188, 0.203994, 0.143043, -0.572425, -0.0468402, 0.0272306)
+
+[node name="AnimationPlayer" parent="." index="1"]
+speed_scale = 3.0
+script = ExtResource("3_gubiw")

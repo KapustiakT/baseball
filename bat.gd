@@ -12,33 +12,11 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	pass
 	# Move the parent Node along the x-axis based on input
-	if Input.is_action_pressed("move_left"):
-		 # Move left
-		translate(Vector3(-speed * delta, 0, 0))
-	elif Input.is_action_pressed("move_right"):
-		# Move right
-		translate(Vector3(speed * delta, 0, 0))
-		
-	if swinging:
-		swing(delta)
-
-		
-func start_swing():
-	swinging = true
-	swings+= 1
-	%PathFollow3D.progress = 0.0
 	
-func swing(delta):
-	%PathFollow3D.progress += swing_speed * delta
-	if %PathFollow3D.progress_ratio >= .99:
-		swing_stop()
-	
-func swing_stop():
-	swinging = false
-	%PathFollow3D.progress = 0.0
-
+		
 #have the bat follow the ball. ray_logic that is worth yoinking as needed
 #func point_to_ray():d
 	#var spaceState = get_world_3d().direct_space_state
